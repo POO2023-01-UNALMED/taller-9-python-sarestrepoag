@@ -7,10 +7,11 @@ root.resizable(0,0)
 root.geometry()
 
 # Configuración pantalla de salida 
-pantalla = Entry(root, width=22, bg="black", fg="white", borderwidth=0, font=("arial", 18, "bold"))
+pantalla = Entry(root, width=22, bg="black", fg="white", borderwidth=0, font=("arial", 18, "bold")) #Modifiqué el tamaño del entry porque el tamaño establecido anteriormente "deformaba" el grid
 pantalla.grid(row=0, column=0, columnspan=4, padx=1, pady=1)
 
 # Configuración botones
+#Coloqué el posicionamiento de los botones en una línea separada a la de su respectiva definición. Esto lo hice debido a que el método grid() no me retornaba un botón, es decir, el apuntador no quedaba "definido" como botón y por lo tanto no se podía ejectura el método bind()
 boton_1 = Button(root, text="1", width=9, height=3, bg="white", fg="red", borderwidth=0, cursor="hand2")
 boton_1.grid(row=1, column=0, padx=1, pady=1)
 boton_2 = Button(root, text="2", width=9, height=3, bg="white", fg="red", borderwidth=0, cursor="hand2")
@@ -72,7 +73,7 @@ def handle(event):
                 pantalla.insert(0,str(res))
         elif "/" in tx:
             nums = tx.split("/")
-            if int(nums[1]) == 0 and float(nums[1])%1 == 0:
+            if int(float(nums[1])) == 0 and float(nums[1])%1 == 0:
                 pantalla.delete(0, len(tx))
             else:
                 res = float(nums[0]) / float(nums[1])
